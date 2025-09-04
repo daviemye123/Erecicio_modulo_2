@@ -10,7 +10,6 @@ def validar_cedula(cedula_str):
         bool: True si la suma de los dígitos es par, False en caso contrario.
     """
     suma = 0
-    # Bucle 'for' para iterar sobre cada carácter del string 'cedula_str'
     for digito_str in cedula_str:
         suma += int(digito_str)
 
