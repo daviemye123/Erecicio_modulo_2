@@ -3,6 +3,9 @@ from random import choice
 def juego():
     """
     Simula un juego de piedra, papel, tijera.
+    usando whiel para repetir el ciclo
+    :return
+    computador hasta que se complete las 3 victorias
     """
     vic = 0
     vicp = 0
