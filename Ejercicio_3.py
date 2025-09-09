@@ -18,7 +18,7 @@ def validar_contrasena(user):
         return False, "Debe tener al menos una mayúscula."
 
     if not any(c.islower() for c in user):
-        return False, "Debe tener al menos una minúscula."  # Corregido de "numero" a "minúscula"
+        return False, "Debe tener al menos una minúscula."
 
     if not any(c.isdigit() for c in user):
         return False, "Debe tener al menos un número."
