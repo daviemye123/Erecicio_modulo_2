@@ -1,27 +1,37 @@
-def numero():
+def procesar_numero(entrada):
     """
-    saber si un nuemro es par o divisible por 5
-    usadno un try para almencar el codigo y si dijita otro valor no sea valido
-    usando replace para los espacios
-    :return
-    no retorna
+    Procesa un número y determina si es par/impar y divisible por 5.
+
+    Args:
+        entrada (str): El número como una cadena de texto.
+
+    Returns:
+        str: El mensaje de resultado o de error.
     """
     try:
-
-        entrada = input("Ingresa un numero: ")
-
         entrada_sin_espacios = entrada.replace(" ", "")
-
         numero = int(entrada_sin_espacios)
 
         resultado = "par" if numero % 2 == 0 else "impar"
 
-        print(f"El numero {numero} es {resultado}.")
+        mensaje = f"El numero {numero} es {resultado}."
 
         if numero % 5 == 0:
-            print("El numero es divisible por 5.")
+            mensaje += " El numero es divisible por 5."
+
+        return mensaje
 
     except ValueError:
-        print("Entrda no valida.")
+        return "Entrada no valida."
+
+
+def numero():
+    """
+    Función principal que solicita la entrada del usuario y muestra el resultado.
+    """
+    entrada = input("Ingresa un numero: ")
+    print(procesar_numero(entrada))
+
+
 if __name__ == "__main__":
     numero()

@@ -1,22 +1,42 @@
-def contra ():
+def validar_contrasena(user):
     """
-    usando una variable con nombre user para que el usaurio ingrese la contraseña
-    if user < str(user) para poder leer lo que se guardo en la variable
-    validando con elif,any para saber si no existen ningun digito
-    .isupper para saber si tiene mayuscula
-    .islower para saber si tiene numero
-    return:user si no es valida
+    Valida una contraseña basada en varias reglas.
+
+    Args:
+        user (str): La contraseña a validar.
+
+    Returns:
+        tuple: (True, "Mensaje de éxito") si es válida, o (False, "Mensaje de error") si es inválida.
+    """
+    if not isinstance(user, str):
+        return False, "La entrada no es una cadena de texto."
+
+    if len(user) == 0:
+        return False, "La contraseña no puede estar vacía."
+
+    if not any(c.isupper() for c in user):
+        return False, "Debe tener al menos una mayúscula."
+
+    if not any(c.islower() for c in user):
+        return False, "Debe tener al menos una minúscula."  # Corregido de "numero" a "minúscula"
+
+    if not any(c.isdigit() for c in user):
+        return False, "Debe tener al menos un número."
+
+    return True, "Éxito. Contraseña válida."
+
+
+def contra():
+    """
+    Función principal que solicita la contraseña al usuario y muestra el resultado.
     """
     while True:
-       user=input("Ingresar contraseña ")
-       if user < str(user):
-           print("no es valida la contraseña")
-       elif not any(c.isupper() for c in user):
-           print("debe tener almenos una mayuscula")
-       elif not any(c.islower() for c in user):
-           print("debe tener almenos un numero")
-       else:
-           print("exito saliendo by")
-           break
+        user = input("Ingresar contraseña: ")
+        es_valida, mensaje = validar_contrasena(user)
+        print(mensaje)
+        if es_valida:
+            break
+
+
 if __name__ == '__main__':
     contra()

@@ -22,9 +22,11 @@ NUM_LANZAMIENTOS = 10000
 
 frecuencias_resultados = simular_lanzamiento_dados(NUM_LANZAMIENTOS)
 
-print(f"--- Frecuencia de las sumas de los dados ({NUM_LANZAMIENTOS} lanzamientos) ---")
+print(f"Frecuencia de las sumas de los dados ({NUM_LANZAMIENTOS} lanzamientos) ---")
 for suma in sorted(frecuencias_resultados.keys()):
     frecuencia = frecuencias_resultados[suma]
     print(f"Suma {suma}: {frecuencia} veces")
 
 print("-" * 65)
+if __name__ == "__main__":
+    NUM_LANZAMIENTOS = 10000

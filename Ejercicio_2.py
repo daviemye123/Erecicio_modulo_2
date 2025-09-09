@@ -1,4 +1,4 @@
-def juego():
+def juego(user_input=int):
     """
     en la clase de juego user es donde se almacenan el menu para la selecion del usuario
     con match seleciona opcion
@@ -9,6 +9,7 @@ def juego():
     case 3
     """
     while True:
+        try:
             user_input = int(input("Ingresar 1 para guardar\n"
                                    "Ingresar 2 para cargar\n"
                                    "Ingresar 3 para ssalir\n"
@@ -25,5 +26,7 @@ def juego():
                     break
                 case _:
                     print("opcion invalida")
+        except ValueError:
+            print("opcion invalida")
 if __name__ == "__main__":
     juego()

@@ -1,6 +1,5 @@
 import random
 
-
 def mostrar_tablero(palabra_secreta, letras_adivinadas):
     """
     Muestra la palabra con guiones bajos para las letras no adivinadas.
@@ -12,6 +11,22 @@ def mostrar_tablero(palabra_secreta, letras_adivinadas):
         else:
             tablero += "_ "
     return tablero.strip()
+
+
+def validar_intento(intento, letras_adivinadas, letras_incorrectas):
+    """
+    Valida la entrada del usuario.
+    Retorna True si la entrada es válida, de lo contrario False.
+    """
+    if len(intento) != 1 or not intento.isalpha():
+        print("Entrada inválida. Por favor, ingresa una sola letra.")
+        return False
+
+    if intento in letras_adivinadas or intento in letras_incorrectas:
+        print("Ya intentaste esa letra. Elige otra.")
+        return False
+
+    return True
 
 
 def jugar_ahorcado():
@@ -37,34 +52,30 @@ def jugar_ahorcado():
         tablero = mostrar_tablero(palabra_secreta, letras_adivinadas)
         print("Palabra: ", tablero)
 
-        # Comprobar si el jugador ha ganado
         if "_" not in tablero:
             print("\n¡Felicidades! ¡Has adivinado la palabra correctamente!")
             print(f"La palabra era: {palabra_secreta}")
             break
 
-        # Pedir una letra al jugador
+
         intento = input("Ingresa una letra: ").lower()
 
-        # Validar la entrada del jugador
-        if len(intento) != 1 or not intento.isalpha():
-            print("Entrada inválida. Por favor, ingresa una sola letra.")
-        elif intento in letras_adivinadas or intento in letras_incorrectas:
-            print("Ya intentaste esa letra. Elige otra.")
+
+        if not validar_intento(intento, letras_adivinadas, letras_incorrectas):
+            continue
+
+
+        if intento in palabra_secreta:
+            print("¡Correcto! La letra está en la palabra.")
+            letras_adivinadas.append(intento)
         else:
-            # Procesar el intento
-            if intento in palabra_secreta:
-                print("¡Correcto! La letra está en la palabra.")
-                letras_adivinadas.append(intento)
-            else:
-                print("Incorrecto. Pierdes una vida.")
-                letras_incorrectas.add(intento)
-                vidas -= 1
+            print("Incorrecto. Pierdes una vida.")
+            letras_incorrectas.add(intento)
+            vidas -= 1
 
     if vidas == 0:
         print("\n¡Oh no, te has quedado sin vidas! Has perdido.")
         print(f"La palabra secreta era: {palabra_secreta}")
-
 
 
 if __name__ == "__main__":
